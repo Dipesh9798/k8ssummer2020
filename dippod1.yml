@@ -6,3 +6,6 @@ spec:
   containers:              #about my docker image and container info
     - name: dipc1          #name of mycontainer
       image: nginx         #image from docker hub
+      ports:
+       - containerPort: 80 #same as expose port in Dockerfile
+
