@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:                  #some info about Pod
+ creationTimestamp: null
+ labels:            # is important if you want your application to get the traffic from service
+  x: hello      # label always in key:value pair and always unique
+ name: pod1    #must be unique
+spec:
+  containers:              #about my docker image and container info
+    - name: dipc12          #name of mycontainer
+      image: dip9798/alpine:entry         #image from docker hub
+      command: ["/bin/bash","-c","cal"] #command can replace entrypoint parent process in docker image
+      
+
