@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: myrcdipesh1  #this will be replication controller name and not the pod
+ labels:
+  app: web1 #this is the label of RC not label of pods
+
+spec:
+ replicas: 1 #always one pod will be present even in case of current worker node failure
+ template:   #this is written in case pod goes down then it will replicate from this template
+  metadata:
+   name: mypod11 #this will be pod name 
+   labels:
+    x: helloadhoc
+  spec:
+   containers:
+    - name: dipcx111
+      image: nginx
+      ports:
+       - containerPort: 80
+
+
