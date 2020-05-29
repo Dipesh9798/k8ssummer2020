@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  creationTimestamp: null
+  labels:
+    run: dippod1
+  name: dippod1
+spec:
+  volumes:
+  - name: dipvol11
+    hostPath:     #this will create volume on the scheduled minion
+     path: /etc/passwd    #file any linux based os where all usernames are stored
+     type: File   #above path is file
+
+  - name: dipvol22
+    hostPath:     #this will create volume on the scheduled minion
+     path: /usr/share/applications/    #file any linux based os where all usernames are stored
+     type: Directory   #above path is directory
+
+  - name: dipvol33
+    hostPath:     #this will create volume on the scheduled minion
+     path: /var/run/docker.sock    #file any linux based os where all usernames are stored
+     type: Socket   #above path is socket of docker engine
+
+  containers:
+  - image: nginx
+    name: dippod1
+    volumeMounts:
+    - name: dipvol11
+      mountPath: /usr/share/nginx/html/index.html  #mounting in a file 
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
