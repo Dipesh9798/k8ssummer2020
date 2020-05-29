@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: alpod1 #label of Pod
+    x: hello    #Pod can have more than one level to make it unique
+  name: alpod1
+
+spec:
+  volumes:   #this is for creating volume of any type
+  - name: dipvol111
+    emptyDir: {}  #it will create temp and random folder in worker node & if you delete the pod it will be deleted
+  containers:
+  - image: alpine
+    name: alpod1
+    volumeMounts:
+    - name: dipvol111  #this volume got created in above section
+      mountPath:  /mnt/data/   #this folder will be created automatically for mounting purpose
+    command: ["/bin/sh","-c","while true ; do date >>/mnt/data/output.txt ; sleep 2 ;done"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+
+

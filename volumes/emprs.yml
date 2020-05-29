@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: myrs1  #this will be replication set name and not the pod
+ labels:
+  app: rsweb1 #this is the label of RS not label of pods
+
+spec:
+
+ selector:
+  matchLabels:
+   x: hellors  #here also label of pod
+
+ replicas: 3 #always one pod will be present even in case of current worker node failure
+
+ template:   #this is written in case pod goes down then it will replicate from this template
+  metadata:
+   name: mypodrs22 #this will be pod name 
+   labels:
+    x: hellors
+  spec:
+   containers:
+    - name: dipcxrs111
+      image: nginx
+      ports:
+       - containerPort: 80
+
+
