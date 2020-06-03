@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: adhocnw
+  creationTimestamp: null
+  labels:
+    app: dipdep1
+  name: dipdep1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dipdep1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dipdep1
+    spec:
+      containers:
+      - image: dip9798/summer2020:vv22
+        name: summer2020
+        resources: {}
+status: {}
